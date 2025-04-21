@@ -14,30 +14,30 @@ def cari_linear(data, kolom, kata_kunci):
 
 def cari_biner(data, kolom, kata_kunci):
     data_urut = data.sort_values(by=kolom, key=lambda x: x.astype(str).str.lower()).reset_index(drop=True)
-    kiri = 0
-    kanan = len(data_urut) - 1
+    left = 0
+    right = len(data_urut) - 1
     kata_kunci = kata_kunci.lower()
     daftar_hasil = []
-    while kiri <= kanan:
-        tengah = (kiri + kanan) // 2
+    while left <= right:
+        tengah = (left + right) // 2
         nilai_tengah = str(data_urut.loc[tengah, kolom]).lower()
         if kata_kunci in nilai_tengah:
-            indeks_kiri, indeks_kanan = tengah, tengah
-            while indeks_kiri >= 0 and kata_kunci in str(data_urut.loc[indeks_kiri, kolom]).lower():
-                daftar_hasil.append(data_urut.loc[indeks_kiri])
-                indeks_kiri -= 1
-            while indeks_kanan < len(data_urut) and kata_kunci in str(data_urut.loc[indeks_kanan, kolom]).lower():
-                if indeks_kanan != tengah:
-                    daftar_hasil.append(data_urut.loc[indeks_kanan])
-                indeks_kanan += 1
+            indeks_left, indeks_right = tengah, tengah
+            while indeks_left >= 0 and kata_kunci in str(data_urut.loc[indeks_left, kolom]).lower():
+                daftar_hasil.append(data_urut.loc[indeks_left])
+                indeks_left -= 1
+            while indeks_right < len(data_urut) and kata_kunci in str(data_urut.loc[indeks_right, kolom]).lower():
+                if indeks_right != tengah:
+                    daftar_hasil.append(data_urut.loc[indeks_right])
+                indeks_right += 1
             break
         elif kata_kunci < nilai_tengah:
-            kanan = tengah - 1
+            right = tengah - 1
         else:
-            kiri = tengah + 1
+            left = tengah + 1
     return pd.DataFrame(daftar_hasil)
 
-def utama():
+def main():
     lokasi_berkas = r"D:\DATA ARIL\KULIAH\Struktur_Data\Struktur_Data_Dataset_Kelas_A_B_C(MyFile).xlsx"
     data = muat_data_lokal(lokasi_berkas)
     if data is None:
@@ -50,7 +50,7 @@ def utama():
         print("3. Keluar")
         opsi = input("Pilih (1/2/3): ")
         if opsi == '3':
-            print("Terima kasih!.")
+            print("Terima kasih! Keluar dari program.")
             break
         elif opsi not in ['1', '2']:
             print("Opsi tak valid.")
@@ -89,4 +89,4 @@ def utama():
             print("Artikel tak ditemukan.")
 
 if __name__ == "__main__":
-    utama()
+    main()
