@@ -44,7 +44,7 @@ def main():
         return
     print("Kolom Tersedia:", data.columns.tolist())
     while True:
-        print("\n== Cari Artikel Ilmiah ==")
+        print("\n== Menu Pencarian Paper ==")
         print("1. Pencarian Linear")
         print("2. Pencarian Biner")
         print("3. Keluar")
@@ -69,7 +69,7 @@ def main():
             print("Kolom tak valid.")
             continue
         kolom_cari = pemetaan_kolom[pilihan_kolom]
-        frasa_cari = input(f"Kata kunci '{kolom_cari}': ")
+        frasa_cari = input(f"Masukkan Kata kunci '{kolom_cari}' : ")
         if opsi == '1':
             hasil_cari = cari_linear(data, kolom_cari, frasa_cari)
         else:
