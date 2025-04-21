@@ -77,14 +77,14 @@ def main():
         print("\n=== Hasil Pencarian ===")
         if not hasil_cari.empty:
             for indeks, baris in hasil_cari.iterrows():
-                print("-" * 80)
+                print("=" * 80)
                 print(f"Judul   : {baris.get('Judul Paper', 'N/A')}")
                 print(f"Penulis : {baris.get('Nama Penulis', 'N/A')}")
                 print(f"Tahun   : {int(baris['Tahun Terbit']) if pd.notnull(baris['Tahun Terbit']) else 'N/A'}")
                 print(f"Abstrak : {baris.get('Abstrak (langusung copas dari paper)', 'N/A')}")
                 print(f"Simpulan: {baris.get('Kesimpulan (Langusung copas dari paper)', 'N/A')}")
                 print(f"Tautan  : {baris.get('Link Paper', 'N/A')}")
-                print("-" * 80)
+                print("=" * 80)
         else:
             print("Artikel tak ditemukan.")
 
